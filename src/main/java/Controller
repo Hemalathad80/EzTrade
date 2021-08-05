@@ -1,0 +1,91 @@
+import java.util.Scanner;
+public class Controller{
+
+public static void welcomeMessage(){
+        System.out.println("Welcome to EzTrade online stock management system");
+        System.out.println("Are you an existing customer or new customer?");
+
+}
+public static void existingCustomer(){
+
+System.out.println("Log in using your credentials");
+System.out.println(Email Id : ");
+Scanner in = new Scanner(System.in);
+System.out.println(Password : ");
+}else{
+ System.out.println("Re enter your details");
+
+}
+
+public static void newCustomer(){
+System.out.println("Sign up");
+System.out.println("Enter your name: ");
+System.out.println(" Enter your email id");
+System.out.println("Enter your password");
+}
+
+public void buyOrSell() {
+            System.out.println("Choose one: Buy or Sell");
+
+            //getting input from the customer
+            Scanner userInput = new Scanner(System.in);
+        }
+
+public static void buy(){
+System.out.println("List of companies" + StockDetails.getCompanyName());
+System.out.println("Choose one");
+Scanner scanner = new Scanner(System.in);
+String compName = scanner.nextLine();
+System.out.println("Current market price of" + compName + " : " + StockDetails.getPrice());
+System.out.println("Number of stocks available :" + StockDetails.numberOfStocks);
+System.out.println("Do you want to proceed?");
+Scanner input = new Scanner(System.in);
+String in = input.nextLine();
+if( in.equals().ignoreCase("yes"){
+    System.out.println("Enter your brokerage account number");
+    Scanner no = new Scanner(System.in);
+    int number = no.nextInt();
+    System.out.println("Transaction processing......");
+    System.out.println("Transaction is successful");
+    System.out.println("Transaction report");
+    System.out.println("Transaction report will be sent to your email Id");
+
+}
+
+public static void updateAfterBuy(){
+
+
+}
+
+
+}
+public static void sell(){
+System.out.println("Your list of stocks");
+System.out.println("Choose one");
+Scanner in = new Scanner(System.in);
+String input = in.nextLine();
+if (StockDetails.companyName == input){
+System.out.println("Enter your brokerage account number");
+    Scanner no = new Scanner(System.in);
+    int number = no.nextInt();
+    System.out.println("Transaction processing......");
+    System.out.println("Transaction is successful");
+    System.out.println("Transaction report");
+    System.out.println("Transaction report will be sent to your email Id");
+
+
+}
+}
+
+public static void updateAfterSell(){
+
+
+}
+
+}
+
+}
+
+
+
+
