@@ -1,6 +1,6 @@
 package com.eztrade.app;
 public class StockDetails {
-
+    private int stockNumber;
     private String companyName;
     private String performance;
     private String price;
@@ -9,11 +9,29 @@ public class StockDetails {
     public StockDetails() {
 
     }
-    public StockDetails(String companyName, String performance, String price, int numberAvailable) {
+    public StockDetails(int stockNumber, String companyName, String performance, String price, int numberAvailable) {
+        this.stockNumber =  stockNumber;
         this.companyName = companyName;
         this.performance = performance;
         this.price = price;
         this.numberAvailable = numberAvailable;
+
+    }
+
+    public int getStockNumber() {
+        return stockNumber;
+    }
+
+    public void setStockNumber(int stockNumber) {
+        this.stockNumber = stockNumber;
+    }
+
+    public String getPerformance() {
+        return performance;
+    }
+
+    public void setPerformance(String performance) {
+        this.performance = performance;
     }
 
     public String getCompanyName() {
@@ -50,7 +68,7 @@ public class StockDetails {
 
     @Override
     public String toString() {
-        return companyName + "   " +
+        return stockNumber + "   " + companyName + "   " +
                 performance +  "    " +
                 price + "   "  +
                 numberAvailable + "\n"
