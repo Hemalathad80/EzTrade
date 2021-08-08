@@ -79,9 +79,5 @@ public class CustomerManagement {
         }
     }
 
-    /*
-    public static void main(String[] argv) throws SQLException {
-        CustomerManagement createTableExample = new CustomerManagement();
-        createTableExample.insertRecord();
-    } */
+
 

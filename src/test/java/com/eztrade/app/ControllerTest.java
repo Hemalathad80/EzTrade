@@ -1,3 +1,5 @@
+package com.eztrade.app;
+
 import com.eztrade.app.Controller;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +11,7 @@ public class ControllerTest {
     public void test(){
 
         //assertEquals("Welcome to EzTrade online stock management system",Controller.welcomeMessage());
-assertTrue(true);
+      assertTrue(true);
     }
 
 }

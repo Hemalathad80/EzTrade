@@ -36,21 +36,9 @@ public class Controller {
 
     public static void existingCustomer() {
 
-        System.out.println("Log in using your credentials");
-        System.out.println("Email Id : ");
-        Scanner in = new Scanner(System.in);
-        emailId = in.next();
+        String emailId = getEmail();
+        String pwd = validatingPassword();
 
-        while (!Utility.isValidEmail(emailId)) {
-            System.out.println("Email is not valid. Please provide a valid email id");
-            System.out.println("Email Id : ");
-            in = new Scanner(System.in);
-            emailId = in.next();
-        }
-
-        System.out.println("Password : ");
-        Scanner password = new Scanner(System.in);
-        String pwd = password.next();
         CustomerManagement cmObj = new CustomerManagement();
         Customers cObj = cmObj.readCustomerDetails(emailId);
 
@@ -70,15 +58,14 @@ public class Controller {
         System.out.println("Enter your name: ");
         Scanner nameInput = new Scanner(System.in);
         String name = nameInput.next();
-        System.out.println(" Enter your email id");
-        Scanner emailIdInput = new Scanner(System.in);
-        String emailId = emailIdInput.next();
 
-        System.out.println("Enter your password");
-        Scanner passwordInput = new Scanner(System.in);
-        String password = passwordInput.next();
+        String emailId = getEmail();
+
+        String password = validatingPassword();
+
         System.out.println("You are successfully signed up");
         cmObj.insertCustomerRecord(3, emailId, password);
+        ////
 
 
     }
@@ -133,19 +120,18 @@ public class Controller {
         csdObj.setQuantity(requestedQuantity);
 
         List<CustomerStockDetails> existingStockDetails = stkObj.readStockDetails(emailId);
-        boolean checktheRecordAlreadyExist = false;
-        int existingQuantity=0;
+        boolean checkTheRecordAlreadyExist = false;
+        int existingQuantity = 0;
 
-        for(CustomerStockDetails stkDetails : existingStockDetails) {
-            if(stkDetails.getCompanyName().equalsIgnoreCase(sdObj.getCompanyName())) {
-                checktheRecordAlreadyExist = true;
+        for (CustomerStockDetails stkDetails : existingStockDetails) {
+            if (stkDetails.getCompanyName().equalsIgnoreCase(sdObj.getCompanyName())) {
+                checkTheRecordAlreadyExist = true;
                 existingQuantity = stkDetails.getQuantity();
             }
         }
-        if(checktheRecordAlreadyExist) {
+        if (checkTheRecordAlreadyExist) {
             stkObj.updateStockRecord(emailId, sdObj.getCompanyName(), existingQuantity + requestedQuantity);
-        }
-        else {
+        } else {
             stkObj.insertStockRecord(csdObj);
         }
 
@@ -175,7 +161,7 @@ public class Controller {
         System.out.println("Displaying your list of stocks with price at the time of purchase and current market price");
         List<CustomerStockDetails> csdObj = new StockManagement().readStockDetails(emailId);
         int counter = 1;
-        for(CustomerStockDetails c : csdObj) {
+        for (CustomerStockDetails c : csdObj) {
 
             System.out.println(counter++ + "  " + c.toString());
         }
@@ -192,8 +178,8 @@ public class Controller {
         afterBuyOrSell();
 
         //update database after sell
-         int newQuantity = csdObj.get(sellInput - 1).getQuantity()- quantity;
-         new StockManagement().updateStockRecord( emailId ,  csdObj.get(sellInput -1).getCompanyName(), newQuantity);
+        int newQuantity = csdObj.get(sellInput - 1).getQuantity() - quantity;
+        new StockManagement().updateStockRecord(emailId, csdObj.get(sellInput - 1).getCompanyName(), newQuantity);
 
         askYesOrNoForAnotherTransaction();
     }
@@ -216,7 +202,55 @@ public class Controller {
 
     }
 
+    public static String validatingPassword() {
+        System.out.println("Password : ");
+        Scanner password = new Scanner(System.in);
+        String pwd = password.next();
+
+
+        while (!Utility.isValidPassword(pwd)) {
+
+
+            System.out.println("Password is not valid. Please provide a valid password");
+            System.out.println("At least 8 chars\n" +
+                    "\n" +
+                    "Contains at least one digit\n" +
+                    "\n" +
+                    "Contains at least one lower alpha char and one upper alpha char\n" +
+                    "\n" +
+                    "Contains at least one char within a set of special chars (@#%$^ etc.)\n" +
+                    "\n" +
+                    "Does not contain space, tab, etc.");
+            System.out.println("Password : ");
+            password = new Scanner(System.in);
+            pwd = password.next();
+            //in = new Scanner(System.in);
+            // emailId = in.next();
+
+
+        }
+
+        return pwd;
+    }
+
+    public static String getEmail() {
+        System.out.println("Log in using your credentials");
+        System.out.println("Email Id : ");
+        Scanner in = new Scanner(System.in);
+        emailId = in.next();
+
+        while (!Utility.isValidEmail(emailId)) {
+            System.out.println("Email is not valid. Please provide a valid email id");
+            System.out.println("Email Id : ");
+            in = new Scanner(System.in);
+            emailId = in.next();
+        }
+
+        return emailId;
+    }
+
 }
+
 
 
 
