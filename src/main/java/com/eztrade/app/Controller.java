@@ -22,12 +22,16 @@ public class Controller {
     public static void askExistingOrNewUser() throws SQLException {
         //getting input from the customer
         Scanner scanner = new Scanner(System.in);
-        String userName = scanner.next();
-
+        String customerChoice = scanner.next();
+        while(!Utility.isValidExistingOrNewCustomerInput(customerChoice)) {
+            System.out.println("Please enter 1 for buy or 2 for sell ");
+            scanner = new Scanner(System.in);
+            customerChoice = scanner.next();
+        }
         // log in the customer
-        if (userName.equalsIgnoreCase("1")) {
+        if (customerChoice.equals("1")) {
             existingCustomer();
-        } else if (userName.equalsIgnoreCase("2")) {
+        } else if (customerChoice.equals("2")) {
             newCustomer();
             System.out.println("Please enter your details");
             existingCustomer();
@@ -37,7 +41,7 @@ public class Controller {
     public static void existingCustomer() {
 
         String emailId = getEmail();
-        String pwd = validatingPassword();
+        String pwd = getPassword();
 
         CustomerManagement cmObj = new CustomerManagement();
         Customers cObj = cmObj.readCustomerDetails(emailId);
@@ -61,7 +65,7 @@ public class Controller {
 
         String emailId = getEmail();
 
-        String password = validatingPassword();
+        String password = getPassword();
 
         System.out.println("You are successfully signed up");
         cmObj.insertCustomerRecord(3, emailId, password);
@@ -74,6 +78,8 @@ public class Controller {
         System.out.println("Choose one option: Buy or Sell");
         Scanner buyOrSellInput = new Scanner(System.in);
         String buyOrSell = buyOrSellInput.next();
+
+        //
         if (buyOrSell.equalsIgnoreCase("Buy")) {
             buy();
 
@@ -184,10 +190,17 @@ public class Controller {
         askYesOrNoForAnotherTransaction();
     }
 
+    //Get customer's online brokerage account number
     public static void getBrokerageAccountNumber() {
         System.out.println("Enter your brokerage account number");
         Scanner no = new Scanner(System.in);
-        int number = no.nextInt();
+        String number = no.next();
+        while(!Utility.isValidAccountNumber(number)){
+            System.out.println("Please enter the valid 8 digit only account number");
+            no = new Scanner(System.in);
+            number = no.next();
+        }
+
     }
 
     public static void askYesOrNoForAnotherTransaction() throws SQLException, InterruptedException {
@@ -202,14 +215,29 @@ public class Controller {
 
     }
 
-    public static String validatingPassword() {
+    public static String getEmail() {
+        System.out.println("Log in using your credentials");
+        System.out.println("Email Id : ");
+        Scanner in = new Scanner(System.in);
+        emailId = in.next();
+
+        while (!Utility.isValidEmail(emailId)) {
+            System.out.println("Email is not valid. Please provide a valid email id");
+            System.out.println("Email Id : ");
+            in = new Scanner(System.in);
+            emailId = in.next();
+        }
+
+        return emailId;
+    }
+
+    public static String getPassword() {
         System.out.println("Password : ");
         Scanner password = new Scanner(System.in);
         String pwd = password.next();
 
 
         while (!Utility.isValidPassword(pwd)) {
-
 
             System.out.println("Password is not valid. Please provide a valid password");
             System.out.println("At least 8 chars\n" +
@@ -233,21 +261,7 @@ public class Controller {
         return pwd;
     }
 
-    public static String getEmail() {
-        System.out.println("Log in using your credentials");
-        System.out.println("Email Id : ");
-        Scanner in = new Scanner(System.in);
-        emailId = in.next();
 
-        while (!Utility.isValidEmail(emailId)) {
-            System.out.println("Email is not valid. Please provide a valid email id");
-            System.out.println("Email Id : ");
-            in = new Scanner(System.in);
-            emailId = in.next();
-        }
-
-        return emailId;
-    }
 
 }
 

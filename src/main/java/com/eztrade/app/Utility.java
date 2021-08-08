@@ -16,7 +16,16 @@ public class Utility {
 
     }
 
+    public static boolean isValidAccountNumber(String accNo) {
+        String NUMBER_REGEX = "\\W*\\d{8}\\b";
 
+             return accNo.matches(NUMBER_REGEX);
+    }
+
+public static boolean isValidExistingOrNewCustomerInput(String in){
+    String NUMBER_REGEX = "\\W*\\d{1}\\b";
+        return in.matches(NUMBER_REGEX);
+}
 
 
 
