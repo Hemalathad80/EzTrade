@@ -31,7 +31,7 @@ public class CreateConnection {
 
     public static void createTable(String createTableSQL) throws SQLException {
 
-        System.out.println(createTableSQL);
+        //System.out.println(createTableSQL);
         // Step 1: Establishing a Connection
         try (Connection connection = CreateConnection.getConnection();
              // Step 2:Create a statement using connection object

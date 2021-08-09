@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class CustomerManagement {
 
-    private static final String createTableSQL = "create table EzTradeusers (\r\n" + "  id bigint auto_increment,\r\n" +
+    private static final String createTableSQL = "create table EzTradeusers (\r\n" + "  id bigint  auto_increment,\r\n" +
             "  email varchar(350),\r\n" +
             "  password varchar(20)\r\n" + "  );";
 
@@ -32,7 +32,7 @@ public class CustomerManagement {
             preparedStatement.setString(2, emailId);
             preparedStatement.setString(3, pwd);
 
-            System.out.println(preparedStatement);
+            //System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class CustomerManagement {
                  PreparedStatement preparedStatement = connection.prepareStatement(QUERY);) {
 
                 preparedStatement.setString(1, existingEmailId);
-                System.out.println(preparedStatement);
+                //System.out.println(preparedStatement);
 
 
                 // Step 3: Execute the query or update query

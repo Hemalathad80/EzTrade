@@ -5,6 +5,7 @@ import com.eztrade.app.StockDetails;
 import com.eztrade.database.CustomerManagement;
 import com.eztrade.database.StockManagement;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -41,7 +42,7 @@ public class Controller {
 
     public static void existingCustomer() {
 
-        String emailId = getEmail();
+        String emailId = getEmail(System.in);
         String pwd = getPassword();
 
         CustomerManagement cmObj = new CustomerManagement();
@@ -64,7 +65,7 @@ public class Controller {
         Scanner nameInput = new Scanner(System.in);
         String name = nameInput.next();
 
-        String emailId = getEmail();
+        String emailId = getEmail(System.in);
 
         String password = getPassword();
 
@@ -222,16 +223,15 @@ public class Controller {
 
     }
 
-    public static String getEmail() {
+    public static String getEmail(InputStream inputstream) {
         System.out.println("Log in using your credentials");
         System.out.println("Email Id : ");
-        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(inputstream);
         emailId = in.next();
 
         while (!Utility.isValidEmail(emailId)) {
             System.out.println("Email is not valid. Please provide a valid email id");
             System.out.println("Email Id : ");
-            in = new Scanner(System.in);
             emailId = in.next();
         }
 
