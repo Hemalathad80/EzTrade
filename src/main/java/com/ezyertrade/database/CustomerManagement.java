@@ -7,30 +7,29 @@ import java.sql.*;
 
 public class CustomerManagement {
 
-    private static final String createTableSQL = "create table EzTradeusers (\r\n" + "  id bigint auto_increment,\r\n" +
+    private static final String createTableSQL = "create table EzyerTradeusers (\r\n" + "  id bigint auto_increment,\r\n" +
             "  email varchar(350),\r\n" +
             "  password varchar(20)\r\n" + "  );";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO EzTradeusers" +
-            "  (id, email, password) VALUES " +
-            " (?, ?, ?);";
+    private static final String INSERT_USERS_SQL = "INSERT INTO EzyerTradeusers" +
+            "  (email, password) VALUES " +
+            " (?, ?);";
 
-    private static final String QUERY = "select id,email,password from EzTradeusers where email =?";
+    private static final String QUERY = "select id,email,password from EzyerTradeusers where email =?";
 
     public void createCustomerManagementTable() throws SQLException {
 
         CreateConnection.createTable(createTableSQL);
     }
 
-    public void insertCustomerRecord(int Id, String emailId,String pwd) throws SQLException {
+    public void insertCustomerRecord(String emailId,String pwd) throws SQLException {
         //System.out.println(INSERT_USERS_SQL);
         // Step 1: Establishing a Connection
         try (Connection connection = CreateConnection.getConnection();
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-            preparedStatement.setInt(1, Id);
-            preparedStatement.setString(2, emailId);
-            preparedStatement.setString(3, pwd);
+             preparedStatement.setString(1, emailId);
+            preparedStatement.setString(2, pwd);
 
             //System.out.println(preparedStatement);
             // Step 3: Execute the query or update query

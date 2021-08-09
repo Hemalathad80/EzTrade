@@ -66,7 +66,7 @@ public class Controller {
         String password = getPassword(System.in);
 
         System.out.println("You are successfully signed up");
-        cmObj.insertCustomerRecord(1, emailId, password);
+        cmObj.insertCustomerRecord(emailId, password);
 
 
     }

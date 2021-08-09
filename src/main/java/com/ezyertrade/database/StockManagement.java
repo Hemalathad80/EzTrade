@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StockManagement {
 
-    private static final String createTableSQL = "create table EzTradeStockManagement (\r\n" + "  id bigint auto_increment,\r\n" +
+    private static final String createTableSQL = "create table EzyerTradeStockManagement (\r\n" + "  id bigint auto_increment,\r\n" +
             "  email varchar(350),\r\n" +
             "  companyname varchar(500),\r\n" +
             "  purchaseprice varchar(500),\r\n" +
@@ -18,14 +18,14 @@ public class StockManagement {
             "  quantity int \r\n" +
             "  );";
 
-    private static final String INSERT_STOCK_DETAILS_SQL = "INSERT INTO EzTradeStockManagement" +
+    private static final String INSERT_STOCK_DETAILS_SQL = "INSERT INTO EzyerTradeStockManagement" +
             "  (email, companyname, purchaseprice, currentmarketprice, performance, quantity ) VALUES " +
             " (?, ?, ?, ?, ?, ?);";
 
 
-    private static final String UPDATE_STOCK_DETAILS_SQL = "update EzTradeStockManagement set quantity = ? where email = ? and companyname =?;";
+    private static final String UPDATE_STOCK_DETAILS_SQL = "update EzyerTradeStockManagement set quantity = ? where email = ? and companyname =?;";
 
-    private static final String GET_STOCK_DETAILS_BY_EMAIL = "select id,email, companyname, purchaseprice, currentmarketprice, performance, quantity  from EzTradeStockManagement where email =?";
+    private static final String GET_STOCK_DETAILS_BY_EMAIL = "select id,email, companyname, purchaseprice, currentmarketprice, performance, quantity  from EzyerTradeStockManagement where email =?";
 
 
 

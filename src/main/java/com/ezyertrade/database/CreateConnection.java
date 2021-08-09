@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class CreateConnection {
 
 
-    private static String jdbcURL = "jdbc:h2:tcp://localhost:9092/~/tmp/h2dbs/eztradedb";
+    private static String jdbcURL = "jdbc:h2:tcp://localhost:9092/~/tmp/h2dbs/ezyertradedb";
     private static String jdbcUsername = "sa";
     private static String jdbcPassword = "capstone";
 
