@@ -25,9 +25,8 @@ public class Controller {
         //getting input from the customer
         Scanner scanner = new Scanner(System.in);
         String customerChoice = scanner.next();
-        while(!Utility.isValidExistingOrNewCustomerInput(customerChoice)) {
+        while (!Utility.isValidExistingOrNewCustomerInput(customerChoice)) {
             System.out.println("Please enter 1 for buy or 2 for sell ");
-            scanner = new Scanner(System.in);
             customerChoice = scanner.next();
         }
         // log in the customer
@@ -43,7 +42,7 @@ public class Controller {
     public static void existingCustomer() {
 
         String emailId = getEmail(System.in);
-        String pwd = getPassword();
+        String pwd = getPassword(System.in);
 
         CustomerManagement cmObj = new CustomerManagement();
         Customers cObj = cmObj.readCustomerDetails(emailId);
@@ -67,11 +66,10 @@ public class Controller {
 
         String emailId = getEmail(System.in);
 
-        String password = getPassword();
+        String password = getPassword(System.in);
 
         System.out.println("You are successfully signed up");
-        cmObj.insertCustomerRecord(3, emailId, password);
-        ////
+        cmObj.insertCustomerRecord(1, emailId, password);
 
 
     }
@@ -81,19 +79,18 @@ public class Controller {
         Scanner buyOrSellInput = new Scanner(System.in);
         String buyOrSell = buyOrSellInput.next();
 
-        while(!Utility.isValidBuyOrSellInput(buyOrSell)) {
+        while (!Utility.isValidBuyOrSellInput(buyOrSell)) {
             System.out.println("Please enter buy or sell");
-            buyOrSellInput = new Scanner(System.in);
             buyOrSell = buyOrSellInput.next();
 
         }
-            if (buyOrSell.equalsIgnoreCase("Buy")) {
-                buy();
+        if (buyOrSell.equalsIgnoreCase("Buy")) {
+            buy();
 
-            } else if (buyOrSell.equalsIgnoreCase("Sell")) {
-                sell();
+        } else if (buyOrSell.equalsIgnoreCase("Sell")) {
+            sell();
 
-            }
+        }
 
     }
 
@@ -111,7 +108,6 @@ public class Controller {
 
         while (Inventory.getStockDetails().get(stockNumberFromUser - 1).getNumberAvailable() < requestedQuantity) {
             System.out.println("Choose the quantity less than the available number" + Inventory.getStockDetails().get(stockNumberFromUser).getNumberAvailable());
-            input = new Scanner(System.in);
             requestedQuantity = input.nextInt();
 
         }
@@ -187,6 +183,14 @@ public class Controller {
         Scanner input = new Scanner(System.in);
         int quantity = input.nextInt();
 
+        while ((csdObj.get(sellInput - 1).getQuantity() < quantity)) {
+            System.out.println("Choose the quantity less than the available number" + csdObj.get(sellInput - 1).getQuantity());
+
+            quantity = input.nextInt();
+
+
+        }
+
         getBrokerageAccountNumber();
 
         afterBuyOrSell();
@@ -203,9 +207,8 @@ public class Controller {
         System.out.println("Enter your brokerage account number");
         Scanner no = new Scanner(System.in);
         String number = no.next();
-        while(!Utility.isValidAccountNumber(number)){
+        while (!Utility.isValidAccountNumber(number)) {
             System.out.println("Please enter the valid 8 digit only account number");
-            no = new Scanner(System.in);
             number = no.next();
         }
 
@@ -228,9 +231,11 @@ public class Controller {
         System.out.println("Email Id : ");
         Scanner in = new Scanner(inputstream);
         emailId = in.next();
-
+        int attempt = 1;
         while (!Utility.isValidEmail(emailId)) {
             System.out.println("Email is not valid. Please provide a valid email id");
+            attempt++;
+            if(attempt == 3) break;
             System.out.println("Email Id : ");
             emailId = in.next();
         }
@@ -238,9 +243,9 @@ public class Controller {
         return emailId;
     }
 
-    public static String getPassword() {
+    public static String getPassword(InputStream inputstream) {
         System.out.println("Password : ");
-        Scanner password = new Scanner(System.in);
+        Scanner password = new Scanner(inputstream);
         String pwd = password.next();
 
 
@@ -257,17 +262,13 @@ public class Controller {
                     "\n" +
                     "Does not contain space, tab, etc.");
             System.out.println("Password : ");
-            password = new Scanner(System.in);
             pwd = password.next();
-            //in = new Scanner(System.in);
-            // emailId = in.next();
 
 
         }
 
         return pwd;
     }
-
 
 
 }

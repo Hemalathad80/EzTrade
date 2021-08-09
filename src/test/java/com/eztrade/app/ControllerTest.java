@@ -16,7 +16,8 @@ public class ControllerTest {
         String inputData = "sandra@gmail.com";
         assertEquals("sandra@gmail.com", Controller.getEmail(new java.io.ByteArrayInputStream(inputData.getBytes())));
 
-        inputData = "sandragmail.com\nsandra@gmail.com";
+        //inputData = "sandragmail.com\nsandra@gmail.com";
+        inputData = "sandragmail.com\nsandragmail.com\nsandragmail.com";
 
         //System.setIn(new java.io.ByteArrayInputStream(inputData.getBytes()));
 
@@ -34,8 +35,20 @@ public class ControllerTest {
     public void testGetPassword() {
 
         String inputData = "Capstone@2021";
-        System.setIn(new java.io.ByteArrayInputStream(inputData.getBytes()));
-        assertEquals("Capstone@2021", Controller.getPassword());
+        assertEquals("Capstone@2021", Controller.getPassword(new java.io.ByteArrayInputStream(inputData.getBytes())));
+
+        inputData ="capstone2021\nCapstone@2021";
+
+        String expectedOutputData = "Password is not valid. Please provide a valid password";
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        System.setOut(ps);
+        Controller.getPassword(new java.io.ByteArrayInputStream(inputData.getBytes()));
+        System.out.flush();
+        String actualOutput = baos.toString();
+        assertTrue(actualOutput.contains(expectedOutputData));
+
+
 
     }
 

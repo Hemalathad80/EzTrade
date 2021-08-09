@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class CustomerManagement {
 
-    private static final String createTableSQL = "create table EzTradeusers (\r\n" + "  id bigint  auto_increment,\r\n" +
+    private static final String createTableSQL = "create table EzTradeusers (\r\n" + "  id bigint auto_increment,\r\n" +
             "  email varchar(350),\r\n" +
             "  password varchar(20)\r\n" + "  );";
 
