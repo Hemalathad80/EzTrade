@@ -1,4 +1,4 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 
 public class CustomerStockDetails {
     String emailId;

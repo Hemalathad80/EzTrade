@@ -1,6 +1,5 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 
-import com.eztrade.app.Controller;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;

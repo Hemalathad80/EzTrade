@@ -1,8 +1,7 @@
 
-package com.eztrade.database;
+package com.ezyertrade.database;
 
-import com.eztrade.app.CustomerStockDetails;
-import com.eztrade.app.Customers;
+import com.ezyertrade.app.CustomerStockDetails;
 
 import java.sql.*;
 import java.util.ArrayList;

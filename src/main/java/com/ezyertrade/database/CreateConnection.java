@@ -1,7 +1,7 @@
 /**
  * Reference : https://www.javaguides.net/2019/08/java-h2-database-tutorial.html
  */
-package com.eztrade.database;
+package com.ezyertrade.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

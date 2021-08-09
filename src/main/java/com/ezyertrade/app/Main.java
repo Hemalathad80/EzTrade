@@ -1,10 +1,6 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 
-import com.eztrade.app.Controller;
-
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Main {
 

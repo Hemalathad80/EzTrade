@@ -1,9 +1,7 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.eztrade.app.StockDetails;
 
 public class Inventory {
 

@@ -1,6 +1,4 @@
-package com.eztrade.app;
-
-import java.util.Scanner;
+package com.ezyertrade.app;
 
 public class Utility {
 

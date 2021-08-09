@@ -1,4 +1,4 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 public class StockDetails {
     private int stockNumber;
     private String companyName;

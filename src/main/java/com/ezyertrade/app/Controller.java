@@ -1,14 +1,11 @@
-package com.eztrade.app;
+package com.ezyertrade.app;
 
-import com.eztrade.app.Inventory;
-import com.eztrade.app.StockDetails;
-import com.eztrade.database.CustomerManagement;
-import com.eztrade.database.StockManagement;
+import com.ezyertrade.database.CustomerManagement;
+import com.ezyertrade.database.StockManagement;
 
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Controller {

@@ -1,7 +1,7 @@
 
-package com.eztrade.database;
+package com.ezyertrade.database;
 
-import com.eztrade.app.Customers;
+import com.ezyertrade.app.Customers;
 
 import java.sql.*;
 
