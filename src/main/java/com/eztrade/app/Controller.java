@@ -7,6 +7,7 @@ import com.eztrade.database.StockManagement;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Controller {
@@ -79,14 +80,20 @@ public class Controller {
         Scanner buyOrSellInput = new Scanner(System.in);
         String buyOrSell = buyOrSellInput.next();
 
-        //
-        if (buyOrSell.equalsIgnoreCase("Buy")) {
-            buy();
-
-        } else if (buyOrSell.equalsIgnoreCase("Sell")) {
-            sell();
+        while(!Utility.isValidBuyOrSellInput(buyOrSell)) {
+            System.out.println("Please enter buy or sell");
+            buyOrSellInput = new Scanner(System.in);
+            buyOrSell = buyOrSellInput.next();
 
         }
+            if (buyOrSell.equalsIgnoreCase("Buy")) {
+                buy();
+
+            } else if (buyOrSell.equalsIgnoreCase("Sell")) {
+                sell();
+
+            }
+
     }
 
 

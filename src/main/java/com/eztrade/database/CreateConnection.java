@@ -61,8 +61,5 @@ public class CreateConnection {
         }
     }
 
-    /*public static void main(String[] argv) throws SQLException {
-        CreateConnection createTableExample = new CreateConnection();
-        createTableExample.createTable();
-    }*/
+
 }

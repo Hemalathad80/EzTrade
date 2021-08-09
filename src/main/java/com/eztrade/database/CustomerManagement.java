@@ -23,7 +23,7 @@ public class CustomerManagement {
     }
 
     public void insertCustomerRecord(int Id, String emailId,String pwd) throws SQLException {
-        System.out.println(INSERT_USERS_SQL);
+        //System.out.println(INSERT_USERS_SQL);
         // Step 1: Establishing a Connection
         try (Connection connection = CreateConnection.getConnection();
              // Step 2:Create a statement using connection object

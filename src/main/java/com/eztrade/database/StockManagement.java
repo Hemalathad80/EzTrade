@@ -25,7 +25,6 @@ public class StockManagement {
 
 
     private static final String UPDATE_STOCK_DETAILS_SQL = "update EzTradeStockManagement set quantity = ? where email = ? and companyname =?;";
-    private static final String deleteTableSQL = "delete from EzTradeStockManagement where email = ? and companyname=?";
 
     private static final String GET_STOCK_DETAILS_BY_EMAIL = "select id,email, companyname, purchaseprice, currentmarketprice, performance, quantity  from EzTradeStockManagement where email =?";
 
@@ -120,21 +119,5 @@ public class StockManagement {
         return cObj;
     }
 
-    public void deleteStockDetail(String emailId,String companyName) throws SQLException {
-        System.out.println(deleteTableSQL);
-        // Step 1: Establishing a Connection
-        try (Connection connection = CreateConnection.getConnection();
-             // Step 2:Create a statement using connection object
-             PreparedStatement prepareStatement = connection.prepareStatement(deleteTableSQL);) {
-            prepareStatement.setString(1,emailId);
-            prepareStatement.setString(2,companyName);
-            // Step 3: Execute the query or update query
-            //prepareStatement.execute(deleteTableSQL);
-            prepareStatement.executeQuery();
 
-        } catch (SQLException e) {
-            // print SQL exception information
-            CreateConnection.printSQLException(e);
-        }
-    }
 }

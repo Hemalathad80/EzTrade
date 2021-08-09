@@ -32,4 +32,13 @@ public class UtilityTest {
         assertFalse(Utility.isValidExistingOrNewCustomerInput("12"));
     }
 
+    @Test
+    public void testIsValidBuyOrSellInput() {
+
+        assertTrue(Utility.isValidBuyOrSellInput("buy"));
+        assertTrue(Utility.isValidBuyOrSellInput("sell"));
+        assertFalse(Utility.isValidBuyOrSellInput("buyer"));
+    }
+
+
 }
