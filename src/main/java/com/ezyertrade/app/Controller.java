@@ -158,7 +158,7 @@ public class Controller {
 
         Thread.sleep(2000);
         System.out.println("Transaction is successful");
-        System.out.println("Transaction report will be sent to your email Id");
+       // System.out.println("Transaction report will be sent to your email Id");
 
     }
 
@@ -176,9 +176,16 @@ public class Controller {
 
         Scanner sellIn = new Scanner(System.in);
         int sellInput = sellIn.nextInt();
+
+        while(!(sellInput <= csdObj.size())){
+            System.out.println("Choose the correct stock number to sell ");
+
+            sellInput = sellIn.nextInt();
+        }
         System.out.println("How many stocks do you want to sell?");
         Scanner input = new Scanner(System.in);
         int quantity = input.nextInt();
+
 
         while ((csdObj.get(sellInput - 1).getQuantity() < quantity)) {
             System.out.println("Choose the quantity less than the available number" + csdObj.get(sellInput - 1).getQuantity());

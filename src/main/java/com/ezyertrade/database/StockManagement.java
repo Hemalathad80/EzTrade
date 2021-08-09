@@ -46,7 +46,7 @@ public class StockManagement {
             preparedStatement.setString(4, csdObj.getCurrentMarketPrice());
             preparedStatement.setString(5, csdObj.getPerformance());
             preparedStatement.setInt(6, csdObj.getQuantity());
-            System.out.println(preparedStatement);
+            //System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
