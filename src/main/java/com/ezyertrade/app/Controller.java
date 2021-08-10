@@ -13,8 +13,8 @@ public class Controller {
     static String emailId;
 
     public static void welcomeMessage() {
-        System.out.println("Welcome to EzTrade online stock management system");
-        System.out.println("Are you an existing customer? Please enter 1 " + "\n" + "Are you a new customer? Please enter 2");
+        System.out.println("***************************************************** \n Welcome to EzyerTrade online stock management system\n ****************************************************\n");
+        System.out.println("Are you an existing customer? Please enter 1 \nAre you a new customer? Please enter 2");
 
     }
 
@@ -23,7 +23,7 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
         String customerChoice = scanner.next();
         while (!Utility.isValidExistingOrNewCustomerInput(customerChoice)) {
-            System.out.println("Please enter 1 for buy or 2 for sell ");
+            System.out.println("Please enter 1 for buy or 2 for sell \n");
             customerChoice = scanner.next();
         }
         // log in the customer
@@ -31,7 +31,7 @@ public class Controller {
             existingCustomer();
         } else if (customerChoice.equals("2")) {
             newCustomer();
-            System.out.println("Please enter your details");
+            System.out.println("Please enter your details\n");
             existingCustomer();
         }
     }
@@ -45,7 +45,7 @@ public class Controller {
         Customers cObj = cmObj.readCustomerDetails(emailId);
 
         if (cObj == null) {
-            System.out.println("Your email Id is not in our records. Please enter your correct email Id");
+            System.out.println("Your email Id is not in our records. Please enter your correct email Id\n");
             existingCustomer();
         }
 
@@ -65,7 +65,7 @@ public class Controller {
 
         String password = getPassword(System.in);
 
-        System.out.println("You are successfully signed up");
+        System.out.println("You are successfully signed up \n 😊😊😊😊😊😊😊😊😊😊😊😊😊 \n");
         cmObj.insertCustomerRecord(emailId, password);
 
 
@@ -95,11 +95,11 @@ public class Controller {
     public static void buy() throws InterruptedException, SQLException {
 
         System.out.println("List of companies  \n" + Inventory.stockDisplay().toString() + "\n");
-        System.out.println("Choose the stock number");
+        System.out.println("Choose the stock number from 1 to 12");
         Scanner scanner = new Scanner(System.in);
         int stockNumberFromUser = scanner.nextInt();
 
-        System.out.println("How many stocks do you want to buy?");
+        System.out.println("How many stocks do you want to buy? (Look for the last column for quantity)");
         Scanner input = new Scanner(System.in);
         int requestedQuantity = input.nextInt();
 
@@ -157,7 +157,8 @@ public class Controller {
         System.out.println("Transaction processing......");
 
         Thread.sleep(2000);
-        System.out.println("Transaction is successful");
+
+        System.out.println("Transaction is successful \n 🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝");
        // System.out.println("Transaction report will be sent to your email Id");
 
     }
@@ -165,24 +166,24 @@ public class Controller {
 
     public static void sell() throws InterruptedException, SQLException {
         //Displays your list of stocks from the database
-        System.out.println("Displaying your list of stocks with price at the time of purchase and current market price");
+        System.out.println("Displaying your list of stocks with the columns -- current market price  -- Performance -- Quantity Available");
         List<CustomerStockDetails> csdObj = new StockManagement().readStockDetails(emailId);
         int counter = 1;
         for (CustomerStockDetails c : csdObj) {
 
             System.out.println(counter++ + "  " + c.toString());
         }
-        System.out.println("Choose the stock number to sell ");
+        System.out.println("Choose the stock number to sell from the left most side");
 
         Scanner sellIn = new Scanner(System.in);
         int sellInput = sellIn.nextInt();
 
         while(!(sellInput <= csdObj.size())){
-            System.out.println("Choose the correct stock number to sell ");
+            System.out.println("Choose the correct stock number to sell  ( Choose from left most column)");
 
             sellInput = sellIn.nextInt();
         }
-        System.out.println("How many stocks do you want to sell?");
+        System.out.println("How many stocks do you want to sell?  ( Choose from right most column)");
         Scanner input = new Scanner(System.in);
         int quantity = input.nextInt();
 
@@ -208,7 +209,7 @@ public class Controller {
 
     //Get customer's online brokerage account number
     public static void getBrokerageAccountNumber() {
-        System.out.println("Enter your brokerage account number");
+        System.out.println("Enter your brokerage account number   ( 8 digits only)");
         Scanner no = new Scanner(System.in);
         String number = no.next();
         while (!Utility.isValidAccountNumber(number)) {
@@ -220,54 +221,57 @@ public class Controller {
 
     public static void askYesOrNoForAnotherTransaction() throws SQLException, InterruptedException {
 
-        System.out.println("Do you want continue with another transaction");
+        System.out.println("Do you want continue with another transaction. Please type Yes or No ");
         Scanner i = new Scanner(System.in);
         if (i.hasNext("yes")) {
             askBuyOrSell();
         } else if (i.hasNext("no")) {
-            System.out.println("Thanks for choosing us!" + "\n" + "Have a great fortune");
+            System.out.println("Thanks for choosing us!" + "\n🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏" + "Have a great fortune \n 👍👍👍👍👍👍👍👍👍👍👍");
         }
 
     }
 
     public static String getEmail(InputStream inputstream) {
         System.out.println("Log in using your credentials");
-        System.out.println("Email Id : ");
+        System.out.print("Email Id( Example format:  xxxx@yyyyy.com) :  ");
         Scanner in = new Scanner(inputstream);
         emailId = in.next();
-        int attempt = 1;
+        int attempt = 0;
         while (!Utility.isValidEmail(emailId)) {
             System.out.println("Email is not valid. Please provide a valid email id");
             attempt++;
-            System.out.println("You have not provided valid email. So try again some time later");
-            if(attempt == 3) break;
+            if(attempt == 3) {
+                System.out.println("You have not provided a valid email. So try again.");
+                welcomeMessage();
+            }
+
             System.out.println("Email Id : ");
             emailId = in.next();
+
         }
 
         return emailId;
     }
 
     public static String getPassword(InputStream inputstream) {
-        System.out.println("Password : ");
+        System.out.println("Password (Minimum - 8 char,one digit, one lower and one upper case char, one special char,should not contain space,tab etc.): ");
         Scanner password = new Scanner(inputstream);
         String pwd = password.next();
 
-
+        int attempt = 0;
         while (!Utility.isValidPassword(pwd)) {
 
             System.out.println("Password is not valid. Please provide a valid password");
-            System.out.println("At least 8 chars\n" +
-                    "\n" +
-                    "Contains at least one digit\n" +
-                    "\n" +
-                    "Contains at least one lower alpha char and one upper alpha char\n" +
-                    "\n" +
-                    "Contains at least one char within a set of special chars (@#%$^ etc.)\n" +
-                    "\n" +
-                    "Does not contain space, tab, etc.");
+            attempt++;
+            System.out.println("At least 8 chars\n Contains at least one digit\n Contains at least one lower alpha char and one upper alpha char\n Contains at least one char within a set of special chars (@#%$^ etc.)\n Does not contain space, tab, etc.");
+            if(attempt == 3) {
+                System.out.println("You have not provided a valid password. So try again.");
+
+                welcomeMessage();
+            }
             System.out.println("Password : ");
             pwd = password.next();
+
 
 
         }
