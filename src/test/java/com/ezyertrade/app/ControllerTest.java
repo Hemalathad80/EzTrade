@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ControllerTest {
     @Test
-    public void testGetEmail() throws FileNotFoundException {
+    public void testGetEmail(){
         String inputData = "sandra@gmail.com";
         assertEquals("sandra@gmail.com", Controller.getEmail(new java.io.ByteArrayInputStream(inputData.getBytes())));
 
         //inputData = "sandragmail.com\nsandra@gmail.com";
-        inputData = "sandragmail.com\nsandragmail.com\nsandragmail.com";
+        inputData = "sandragmail.com\nsandragmail.com\nsandra@gmail.com";
 
         //System.setIn(new java.io.ByteArrayInputStream(inputData.getBytes()));
 
@@ -36,7 +36,7 @@ public class ControllerTest {
         String inputData = "Capstone@2021";
         assertEquals("Capstone@2021", Controller.getPassword(new java.io.ByteArrayInputStream(inputData.getBytes())));
 
-        inputData ="capstone2021\nCapstone@2021";
+        inputData ="capstone2021\ncapstone\nCapstone@2021";
 
         String expectedOutputData = "Password is not valid. Please provide a valid password";
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

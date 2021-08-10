@@ -94,7 +94,7 @@ public class Controller {
 
     public static void buy() throws InterruptedException, SQLException {
 
-        System.out.println("List of companies  \n" + Inventory.stockDisplay().toString() + "\n");
+        System.out.println("List of companies : StockNo -- Name --Performance -- Price -- Quantity  \n" + Inventory.stockDisplay().toString());
         System.out.println("Choose the stock number from 1 to 12");
         Scanner scanner = new Scanner(System.in);
         int stockNumberFromUser = scanner.nextInt();
@@ -154,19 +154,19 @@ public class Controller {
     public static void afterBuyOrSell() throws InterruptedException, SQLException {
 
 
-        System.out.println("Transaction processing......");
+        System.out.println("Transaction processing......\n ");
 
         Thread.sleep(2000);
 
-        System.out.println("Transaction is successful \n 🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝🤝");
-       // System.out.println("Transaction report will be sent to your email Id");
+        System.out.println("Transaction is successful \n🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 ");
+        // System.out.println("Transaction report will be sent to your email Id");
 
     }
 
 
     public static void sell() throws InterruptedException, SQLException {
         //Displays your list of stocks from the database
-        System.out.println("Displaying your list of stocks with the columns -- current market price  -- Performance -- Quantity Available");
+        System.out.println("Displaying your list of stocks: StockNo -- Name -- current market price  -- Performance -- Quantity Available");
         List<CustomerStockDetails> csdObj = new StockManagement().readStockDetails(emailId);
         int counter = 1;
         for (CustomerStockDetails c : csdObj) {
@@ -178,7 +178,7 @@ public class Controller {
         Scanner sellIn = new Scanner(System.in);
         int sellInput = sellIn.nextInt();
 
-        while(!(sellInput <= csdObj.size())){
+        while (!(sellInput <= csdObj.size())) {
             System.out.println("Choose the correct stock number to sell  ( Choose from left most column)");
 
             sellInput = sellIn.nextInt();
@@ -226,25 +226,27 @@ public class Controller {
         if (i.hasNext("yes")) {
             askBuyOrSell();
         } else if (i.hasNext("no")) {
-            System.out.println("Thanks for choosing us!" + "\n🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏" + "Have a great fortune \n 👍👍👍👍👍👍👍👍👍👍👍");
+            System.out.println("Thanks for choosing us!\n" + "\n🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏\n" + "Have a great fortune \n 👍👍👍👍👍👍👍👍👍👍👍");
         }
 
     }
 
     public static String getEmail(InputStream inputstream) {
+        emailId = "no id";
         System.out.println("Log in using your credentials");
-        System.out.print("Email Id( Example format:  xxxx@yyyyy.com) :  ");
+        System.out.println("Email Id( Example format:  xxxx@yyyyy.com) :  ");
         Scanner in = new Scanner(inputstream);
         emailId = in.next();
-        int attempt = 0;
+        int attempt = 1;
         while (!Utility.isValidEmail(emailId)) {
             System.out.println("Email is not valid. Please provide a valid email id");
-            attempt++;
-            if(attempt == 3) {
-                System.out.println("You have not provided a valid email. So try again.");
-                welcomeMessage();
-            }
 
+
+            if (attempt == 3) {
+                System.out.println("You have not provided a valid email. So try again later.");
+                System.exit(0);
+            }
+            attempt++;
             System.out.println("Email Id : ");
             emailId = in.next();
 
@@ -258,21 +260,20 @@ public class Controller {
         Scanner password = new Scanner(inputstream);
         String pwd = password.next();
 
-        int attempt = 0;
+        int attempt = 1;
         while (!Utility.isValidPassword(pwd)) {
 
             System.out.println("Password is not valid. Please provide a valid password");
-            attempt++;
-            System.out.println("At least 8 chars\n Contains at least one digit\n Contains at least one lower alpha char and one upper alpha char\n Contains at least one char within a set of special chars (@#%$^ etc.)\n Does not contain space, tab, etc.");
-            if(attempt == 3) {
-                System.out.println("You have not provided a valid password. So try again.");
 
-                welcomeMessage();
+            System.out.println("At least 8 chars\n Contains at least one digit\n Contains at least one lower alpha char and one upper alpha char\n Contains at least one char within a set of special chars (@#%$^ etc.)\n Does not contain space, tab, etc.");
+            if (attempt == 3) {
+                System.out.println("You have not provided a valid password. So try again later.");
+            System.exit(0);
+
             }
+            attempt++;
             System.out.println("Password : ");
             pwd = password.next();
-
-
 
         }
 
