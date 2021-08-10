@@ -10,16 +10,16 @@ import java.sql.Statement;
 
 public class CreateConnection {
 
-
+    //Connection url and credentials
     private static String jdbcURL = "jdbc:h2:tcp://localhost:9092/~/tmp/h2dbs/ezyertradedb";
     private static String jdbcUsername = "sa";
     private static String jdbcPassword = "capstone";
 
-
+    //get database connection
     public static Connection getConnection() {
         Connection connection = null;
         try {
-      //      Class.forName(JDBC_DRIVER);
+            //      Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -28,7 +28,7 @@ public class CreateConnection {
         return connection;
     }
 
-
+    // Create table
     public static void createTable(String createTableSQL) throws SQLException {
 
         //System.out.println(createTableSQL);
@@ -45,8 +45,10 @@ public class CreateConnection {
             CreateConnection.printSQLException(e);
         }
     }
-     public static void printSQLException(SQLException ex) {
-        for (Throwable e: ex) {
+
+    // Prints exception message
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
                 System.err.println("SQLState: " + ((SQLException) e).getSQLState());

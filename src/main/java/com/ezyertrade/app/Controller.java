@@ -5,6 +5,7 @@ import com.ezyertrade.database.StockManagement;
 
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Controller {
 
     //Method for displaying welcome message
     public static void welcomeMessage() {
-        System.out.println("***************************************************** \n Welcome to EzyerTrade online stock management system\n ****************************************************\n");
+        System.out.println("*************************************************** \n Welcome to EzyerTrade online stock management App\n **************************************************\n");
         System.out.println("Are you an existing customer? Please enter 1 \nAre you a new customer? Please enter 2");
 
     }
@@ -111,13 +112,21 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
         int stockNumberFromUser = scanner.nextInt();
 
+        //Validation
+        while (!(stockNumberFromUser <= Inventory.getStockDetails().size())) {
+            System.out.println("Choose the correct stock number to sell  ( Choose from left most column)");
+
+            stockNumberFromUser = scanner.nextInt();
+        }
+
+
         System.out.println("How many stocks do you want to buy? (Look for the last column for quantity)");
         Scanner input = new Scanner(System.in);
         int requestedQuantity = input.nextInt();
 
         //Checks the quantity entered for buying is less than or equal to the actual available number to buy
         while (Inventory.getStockDetails().get(stockNumberFromUser - 1).getNumberAvailable() < requestedQuantity) {
-            System.out.println("Choose the quantity less than the available number" + Inventory.getStockDetails().get(stockNumberFromUser).getNumberAvailable());
+            System.out.println("Choose the quantity less than the available number " + Inventory.getStockDetails().get(stockNumberFromUser - 1).getNumberAvailable());
             requestedQuantity = input.nextInt();
 
         }
@@ -171,7 +180,7 @@ public class Controller {
 
         Thread.sleep(2000);
 
-        System.out.println("Transaction is successful \n🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 ");
+        System.out.println("Transaction is successful \n🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝 🤝\n ");
         // System.out.println("Transaction report will be sent to your email Id");
 
     }
@@ -243,10 +252,17 @@ public class Controller {
 
         System.out.println("Do you want continue with another transaction. Please type Yes or No ");
         Scanner i = new Scanner(System.in);
-        if (i.hasNext("yes")) {
+        String yesOrNoInput = i.next();
+
+        //Validation
+        while (!(yesOrNoInput.equalsIgnoreCase("yes") || yesOrNoInput.equalsIgnoreCase("no"))) {
+            System.out.println("Please type Yes or No ");
+            yesOrNoInput = i.next();
+        }
+        if (yesOrNoInput.equalsIgnoreCase("yes")) {
             askBuyOrSell();
-        } else if (i.hasNext("no")) {
-            System.out.println("Thanks for choosing us!\n" + "\n🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏\n" + "Have a great fortune \n 👍👍👍👍👍👍👍👍👍👍👍");
+        } else if (yesOrNoInput.equalsIgnoreCase("no")) {
+            System.out.println("Thanks for choosing us!\n" + "\n🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏 🙏\n" + "Have a great fortune \n 👍👍👍👍👍👍👍👍👍👍👍👍👍👍👍");
         }
 
     }
@@ -266,7 +282,7 @@ public class Controller {
 
             //Counter for limiting customer entry to 3 attempts
             if (attempt == 3) {
-                System.out.println("You have not provided a valid email. So try again later.");
+                System.out.println("Sorry. You have exceeded the maximum attempts. Try again later.");
                 System.exit(0);
             }
             attempt++;
@@ -295,7 +311,7 @@ public class Controller {
 
             //Counter for limiting customer entry to 3 attempts
             if (attempt == 3) {
-                System.out.println("You have not provided a valid password. So try again later.");
+                System.out.println("Sorry. You have exceeded the maximum attempts. Try again later.");
                 System.exit(0);
 
             }

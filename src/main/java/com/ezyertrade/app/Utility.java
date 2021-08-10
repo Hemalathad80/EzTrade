@@ -26,8 +26,8 @@ public class Utility {
 
     //Validates the existing or new user command line input
     public static boolean isValidExistingOrNewCustomerInput(String in) {
-        String NUMBER_REGEX = "\\W*\\d{1}\\b";
-        return in.matches(NUMBER_REGEX);
+
+        return in.equals("1") || in.equals("2");
     }
 
     //Validates buy or sell command line input

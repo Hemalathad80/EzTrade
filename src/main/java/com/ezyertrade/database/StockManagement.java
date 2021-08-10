@@ -9,6 +9,7 @@ import java.util.List;
 
 public class StockManagement {
 
+    //Create table query
     private static final String createTableSQL = "create table EzyerTradeStockManagement (\r\n" + "  id bigint auto_increment,\r\n" +
             "  email varchar(350),\r\n" +
             "  companyname varchar(500),\r\n" +
@@ -18,22 +19,26 @@ public class StockManagement {
             "  quantity int \r\n" +
             "  );";
 
+    //Insert query
     private static final String INSERT_STOCK_DETAILS_SQL = "INSERT INTO EzyerTradeStockManagement" +
             "  (email, companyname, purchaseprice, currentmarketprice, performance, quantity ) VALUES " +
             " (?, ?, ?, ?, ?, ?);";
 
 
+    //Update query
     private static final String UPDATE_STOCK_DETAILS_SQL = "update EzyerTradeStockManagement set quantity = ? where email = ? and companyname =?;";
 
+    //Get query
     private static final String GET_STOCK_DETAILS_BY_EMAIL = "select id,email, companyname, purchaseprice, currentmarketprice, performance, quantity  from EzyerTradeStockManagement where email =?";
 
 
-
+    //Create table
     public void createStockManagementTable() throws SQLException {
 
         CreateConnection.createTable(createTableSQL);
     }
 
+    //Insert stock record
     public void insertStockRecord(CustomerStockDetails csdObj) throws SQLException {
         //System.out.println(INSERT_STOCK_DETAILS_SQL);
         // Step 1: Establishing a Connection
@@ -56,6 +61,7 @@ public class StockManagement {
         }
     }
 
+    //Update stock record
     public void updateStockRecord(String email, String companyname, int quantity) throws SQLException {
         //System.out.println(UPDATE_USERS_SQL);
         // Step 1: Establishing a Connection
@@ -78,6 +84,7 @@ public class StockManagement {
         // Step 4: try-with-resource statement will auto close the connection.
     }
 
+    //Reads customer stock details
     public List<CustomerStockDetails> readStockDetails(String existingEmailId) {
 
         List<CustomerStockDetails> cObj = new ArrayList<>();
