@@ -1,5 +1,8 @@
 package com.ezyertrade.app;
+
 public class StockDetails {
+
+    //Variables of the stock
     private int stockNumber;
     private String companyName;
     private String performance;
@@ -9,8 +12,10 @@ public class StockDetails {
     public StockDetails() {
 
     }
+
+    //Constructor
     public StockDetails(int stockNumber, String companyName, String performance, String price, int numberAvailable) {
-        this.stockNumber =  stockNumber;
+        this.stockNumber = stockNumber;
         this.companyName = companyName;
         this.performance = performance;
         this.price = price;
@@ -18,6 +23,7 @@ public class StockDetails {
 
     }
 
+    //Getters and Setters
     public int getStockNumber() {
         return stockNumber;
     }
@@ -66,12 +72,14 @@ public class StockDetails {
         this.numberAvailable = numberAvailable;
     }
 
+
+    //toString() method
     @Override
     public String toString() {
         return stockNumber + "   " + companyName + "   " +
-                performance +  "    " +
-                price + "   "  +
+                performance + "    " +
+                price + "   " +
                 numberAvailable + "\n"
-               ;
+                ;
     }
 }

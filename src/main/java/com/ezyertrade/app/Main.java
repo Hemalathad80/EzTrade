@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException, SQLException {
 
 
-        //Welcome message
+        //Displays Welcome message
         Controller.welcomeMessage();
 
         //Ask whether existing or New user

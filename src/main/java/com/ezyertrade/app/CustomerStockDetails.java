@@ -1,6 +1,8 @@
 package com.ezyertrade.app;
 
 public class CustomerStockDetails {
+
+    //Customer stock variables
     String emailId;
     String companyName;
     String purchasePrice;
@@ -12,6 +14,7 @@ public class CustomerStockDetails {
 
     }
 
+    //Getters and Setters
     public String getEmailId() {
         return emailId;
     }
@@ -60,12 +63,13 @@ public class CustomerStockDetails {
         this.quantity = quantity;
     }
 
+    //toString() method
     @Override
     public String toString() {
         return companyName + "  " +
                 currentMarketPrice + "  " +
-                 Performance + "  " +
-               quantity
+                Performance + "  " +
+                quantity
                 ;
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Inventory {
 
+    //Initializing 12 Stock objects
     static StockDetails stockOne = new StockDetails(1, "Dick Smith Holdings Limited", "+8.7%", "$0.355", 100);
     static StockDetails stockTwo = new StockDetails(2, "Viasat", "+1.4%", "$52.14", 1000);
     static StockDetails stockThree = new StockDetails(3, "Gladstone Commercial", "-4.07%", "$23.11", 100);
@@ -20,6 +21,7 @@ public class Inventory {
 
     List<StockDetails> listOfStocks;
 
+    //Constructor
     public Inventory() {
 
         listOfStocks = new ArrayList<>();
@@ -39,8 +41,8 @@ public class Inventory {
 
     }
 
+    //Displays the list of stocks
     public static StringBuilder stockDisplay() {
-
 
         StringBuilder sb = new StringBuilder();
 
