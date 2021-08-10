@@ -239,6 +239,7 @@ public class Controller {
         while (!Utility.isValidEmail(emailId)) {
             System.out.println("Email is not valid. Please provide a valid email id");
             attempt++;
+            System.out.println("You have not provided valid email. So try again some time later");
             if(attempt == 3) break;
             System.out.println("Email Id : ");
             emailId = in.next();
